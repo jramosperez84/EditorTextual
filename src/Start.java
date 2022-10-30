@@ -41,13 +41,7 @@ public class Start {
 		File f = null;
 		
 		f = new File(url);
-        if (!f.exists()) {
-            if (f.mkdirs()) {
-                System.out.println("Directorio creado");
-            } else {
-                System.out.println("Error al crear directorio");
-            }
-        }
+		f.mkdirs();
 	}
 	
 	public static void borrarDirectorio (File url) {
@@ -107,12 +101,8 @@ public class Start {
 					String b = "b";
 					String urlCrear = "";
 					String textoCrear = "";
-					File f1 = null;
+					
 					boolean tipoA = false;
-					
-					f1 = new File (urlCrear);
-					
-					//boolean existe = f1.exists();
 					
 					System.out.println("--------------------------------------------");
 					System.out.println("Creación de un nuevo fichero");
@@ -125,8 +115,9 @@ public class Start {
 					System.out.print("Introduzca el nombre del fichero a crear: ");
 					
 					urlCrear = entradaDatos.next();
+					File f1 = new File (urlCrear);
 					
-					if (f1.exists()) {
+					if (!f1.exists()) {
 						
 						System.out.print("Introduzca su texto: ");
 						entradaDatos.nextLine();
@@ -146,7 +137,7 @@ public class Start {
 							System.out.println("A) Sobrescribir");
 							System.out.println("B) Crear nuevo fichero");
 							System.out.println("");
-							System.out.println("Opcion: ");
+							System.out.print("Opcion: ");
 							
 							seleccion = entradaDatos.next();
 							
@@ -159,6 +150,7 @@ public class Start {
 								escribirFichero (urlCrear, textoCrear, tipoA);
 								System.out.println("");
 								System.out.println("Fichero modificado con exito.");
+								break;
 							
 							} else if (seleccion.equalsIgnoreCase(b)) {
 								
@@ -173,6 +165,7 @@ public class Start {
 								escribirFichero (urlCrear, textoCrear, tipoA);
 								System.out.println("");
 								System.out.println("Fichero creado con exito.");
+								break;
 							}
 							
 						} while(seleccion.equalsIgnoreCase(a));
@@ -194,17 +187,22 @@ public class Start {
 					System.out.print("Introduzca el nombre del fichero a editar: ");
 					
 					urlEditar = entradaDatos.next();
+					File f2 = new File (urlEditar);
 					
-					System.out.print("Introduzca su texto: ");
-					entradaDatos.nextLine();
-					textoEditar = entradaDatos.nextLine();
-	
-					escribirFichero (urlEditar, textoEditar, tipoB );
-					System.out.println("");
-					System.out.println("Fichero editado con exito.");
+					if (!f2.exists()) {
+						System.out.println("");
+						System.out.println("El archivo no existe");
+					} else {
+						System.out.print("Introduzca su texto: ");
+						entradaDatos.nextLine();
+						textoEditar = entradaDatos.nextLine();
+		
+						escribirFichero (urlEditar, textoEditar, tipoB );
+						System.out.println("");
+						System.out.println("Fichero editado con exito.");
+					}
 				break;
 				case 3:
-					File f3 = null;
 					String urlFichero = "";
 					
 					System.out.println("--------------------------------------------");
@@ -218,17 +216,20 @@ public class Start {
 					
 					
 					urlFichero = entradaDatos.next();
-					f3 = new File (urlFichero);
-					
+					File f3 = new File (urlFichero);
 					
 					if (!f3.exists()) 
 					{	
 						System.out.println("");
+						System.out.println("--------------------------------------------");
 						System.out.println("El fichero elegido no existe.");
+						System.out.println("--------------------------------------------");
 					} else {
 						borrar (urlFichero);					
 						System.out.println("");
+						System.out.println("--------------------------------------------");
 						System.out.println("Fichero borrado con exito.");
+						System.out.println("--------------------------------------------");
 					}
 				break;
 				case 4:
@@ -243,10 +244,23 @@ public class Start {
 					System.out.print("Introduzca el nombre de la carpeta a crear: ");
 					
 					urlDir = entradaDatos.next();
-					crearDirectorio (urlDir);
+					File f4 = new File (urlDir);
+					
+					if (f4.exists()) 
+					{	
+						System.out.println("");
+						System.out.println("--------------------------------------------");
+						System.out.println("La carpeta elegida ya existe.");
+						System.out.println("--------------------------------------------");
+					} else {
+						crearDirectorio (urlDir);					
+						System.out.println("");
+						System.out.println("--------------------------------------------");
+						System.out.println("Carpeta creada con exito.");
+						System.out.println("--------------------------------------------");
+					}
 				break;
 				case 5:
-					File f5 = null;
 					String dirBorrar = "";
 					
 					System.out.println("--------------------------------------------");
@@ -258,16 +272,20 @@ public class Start {
 					System.out.print("Introduzca el nombre de la carpeta a borrar: ");
 					
 					dirBorrar = entradaDatos.next();
-					f5 = new File (dirBorrar);
+					File f5 = new File (dirBorrar);
 					
 					if (!f5.exists()) 
 					{	
 						System.out.println("");
+						System.out.println("--------------------------------------------");
 						System.out.println("La carpeta elegida no existe.");
+						System.out.println("--------------------------------------------");
 					} else {
 						borrarDirectorio (f5);					
 						System.out.println("");
+						System.out.println("--------------------------------------------");
 						System.out.println("La carpeta se ha borrado con exito.");
+						System.out.println("--------------------------------------------");
 					}
 				break;				
 				case 0:	
