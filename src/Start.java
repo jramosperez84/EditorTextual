@@ -5,40 +5,7 @@ import java.util.Scanner;
 
 public class Start {
 	
-	public static void CrearFichero () {
-		
-		File f = new File ("mi_fichero.txt"); 
-		FileWriter fw = null; 
-		PrintWriter pw = null;		
-		
-		
-		
-		if (f.exists()) 
-		{
-			try {
-					
-				fw = new FileWriter(f,true); // Añadiendo true como parametro, println fw no nos machaca el texto ya escrito. 
-				pw = new PrintWriter(fw);
-				
-				pw.println("Añadiendo una segunda linea");
-				
-				pw.close();
-				fw.close();
-				
-				
-				
-				System.out.println("Fichero creado correctamente");
-				
-			} catch (IOException e) {   	
-				
-				e.printStackTrace();
-			}
-		} 
-		else 
-		{
-			
-		}
-	}
+	
 	
 	public static void imprimirMenu() 
 	{
